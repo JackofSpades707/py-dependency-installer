@@ -8,7 +8,7 @@ def dependency_installer(path=None):
     def parse_module_name(import_statement):
         return import_statement.replace('import ', '').replace('from ', '')
     if path is None:
-        path = __file__
+        path = __file__ # if path is None, we use the script calling the function
     with open(os.path.abspath(path)) as f:
         fd = f.read()
     modules = []
