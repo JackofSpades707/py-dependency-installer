@@ -21,3 +21,6 @@ from selenium import webdriver
 * If the import statement fails, it will automatically pip install the module for you
 * if optional `global_imports` is set to True (false by default) it will import the module globally (the same as a normal import statement)
 * if optional `pip_output` is set to True (false by default) it will print pips output to the console/terminal
+
+This is what `pip_import` functionality looks like if `global_imports` is set to `True`
+![pip_import](https://i.imgur.com/Q7U6x0P.png)
