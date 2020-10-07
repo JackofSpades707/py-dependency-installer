@@ -18,7 +18,8 @@ def dependency_installer(path=None):
         modules.append(parse_module_name(import_statement))
     modules = list(set(modules))
     for module in modules:
-        if f"{module}.py" not in os.listdir():
+        if f"{module}.py" not in os.listdir() or module not in os.listdir():
+            # Check to see if module exists locally, if so, do not pip import module
             pip_import(module)
 
 def pip_import(module, global_imports=False, verbose_output=False):
