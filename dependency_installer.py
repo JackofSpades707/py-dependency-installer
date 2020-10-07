@@ -25,16 +25,17 @@ def dependency_installer(path=None):
 def pip_import(module, global_imports=False, verbose_output=False):
     try:
         if global_imports:
-            exec(f"import {module.replace('-', '')}", globals())
+            exec(f"import {module}", globals())
         else:
-            exec(f"import {module.replace('-', '')}")
+            exec(f"import {module}")
     except ImportError:
         output = subprocess.Popen(f"python -m pip install {module}".split(), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         if "Successfully installed" in output[0].decode('utf-8'):
             if verbose_output:
                 print(output[0].decode('utf-8'))
             print(f'[+] Installed {module}')
-            pip_import(module)
+            if global_imports:
+                pip_import(module)
         elif "ERROR" in output[1].decode('utf-8'):
             if verbose_output:
                 print(output[1].decode('utf-8'))
